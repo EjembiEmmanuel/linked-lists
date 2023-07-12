@@ -72,10 +72,35 @@ class LinkedList {
   }
 
   insertAt(value, index) {
-    var index = index - 1;
+    index -= 1;
     var node = getNode(this.list, 0, index);
     value.nextNode = node.nextNode;
     node.nextNode = value;
+  }
+
+  removeAt(index) {
+    var node;
+    var size = this.size();
+
+    try {
+      if (size - 1 < index || index < 0) {
+        throw new Error("List out of range");
+      }
+
+      if (index === 0) {
+        node = getNode(this.list, 0, index);
+        this.list = node.nextNode;
+        return;
+      }
+
+      index -= 1;
+
+      node = getNode(this.list, 0, index);
+
+      node.nextNode = node.nextNode.nextNode;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
