@@ -28,3 +28,13 @@ console.log("Tail", list.tail());
 console.log(list.contains("zero"));
 console.log(list.find("minus one"));
 console.log(list.toString());
+
+var newItem1 = new Node("new item 1");
+list.insertAt(newItem1, 2);
+
+console.log(list.toString());
+
+var newItem2 = new Node("new item 2");
+list.insertAt(newItem2, 4);
+
+console.log(list.toString());

@@ -70,6 +70,13 @@ class LinkedList {
   toString() {
     return buildString(this.list, "");
   }
+
+  insertAt(value, index) {
+    var index = index - 1;
+    var node = getNode(this.list, 0, index);
+    value.nextNode = node.nextNode;
+    node.nextNode = value;
+  }
 }
 
 class Node {
