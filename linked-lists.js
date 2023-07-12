@@ -1,54 +1,24 @@
+import {
+  getSize,
+  getLastNode,
+  getNode,
+  removeNode,
+  getValue,
+  findValue,
+  buildString,
+} from "./utils.js";
+
 class LinkedList {
   constructor() {
     this.list = null;
   }
 
-  getSize(list, counter) {
-    if (list.nextNode === null) {
-      return counter;
+  append(value) {
+    if (this.list) {
+      getLastNode(this.list).nextNode = value;
+    } else {
+      this.list = value;
     }
-
-    counter += 1;
-
-    return this.getSize(list.nextNode, counter);
-  }
-
-  size() {
-    if (this.list === null) {
-      return 0;
-    }
-
-    return this.getSize(this.list, 1);
-  }
-
-  head() {
-    return this.list;
-  }
-
-  tail() {
-    return this.getLastNode(this.list);
-  }
-
-  getLastNode(list) {
-    if (list.nextNode === null) {
-      return list;
-    }
-
-    return this.getLastNode(list.nextNode);
-  }
-
-  getNode(list, counter, index) {
-    if (counter === index) {
-      return list;
-    }
-
-    counter += 1;
-
-    return this.getNode(list.nextNode, counter, index);
-  }
-
-  at(index) {
-    return this.getNode(this.list, 0, index);
   }
 
   prepend(value) {
@@ -60,21 +30,24 @@ class LinkedList {
     }
   }
 
-  append(value) {
-    if (this.list) {
-      this.getLastNode(this.list).nextNode = value;
-    } else {
-      this.list = value;
+  size() {
+    if (this.list === null) {
+      return 0;
     }
+
+    return getSize(this.list, 1);
   }
 
-  removeNode(list) {
-    if (list.nextNode.nextNode === null) {
-      list.nextNode = null;
-      return;
-    }
+  head() {
+    return this.list;
+  }
 
-    return this.removeNode(list.nextNode);
+  tail() {
+    return getLastNode(this.list);
+  }
+
+  at(index) {
+    return getNode(this.list, 0, index);
   }
 
   pop() {
@@ -83,55 +56,19 @@ class LinkedList {
       return;
     }
 
-    this.removeNode(this.list);
-  }
-
-  getValue(list, value) {
-    if (list.value === value) {
-      return true;
-    }
-
-    if (list.nextNode === null) {
-      return false;
-    }
-
-    return this.getValue(list.nextNode, value);
+    removeNode(this.list);
   }
 
   contains(value) {
-    return this.getValue(this.list, value);
-  }
-
-  findValue(list, counter, value) {
-    if (list.value === value) {
-      return counter;
-    }
-
-    if (list.nextNode === null) {
-      return null;
-    }
-
-    counter += 1;
-
-    return this.findValue(list.nextNode, counter, value);
+    return getValue(this.list, value);
   }
 
   find(value) {
-    return this.findValue(this.list, 0, value);
-  }
-
-  buildString(list, string) {
-    string = string.concat(`( ${list.value} ) -> `);
-
-    if (list.nextNode === null) {
-      return string.concat("null");
-    }
-
-    return this.buildString(list.nextNode, string);
+    return findValue(this.list, 0, value);
   }
 
   toString() {
-    return this.buildString(this.list, "");
+    return buildString(this.list, "");
   }
 }
 
@@ -142,29 +79,4 @@ class Node {
   }
 }
 
-var list = new LinkedList();
-var one = new Node(1);
-list.append(one);
-
-var two = new Node("two");
-list.append(two);
-
-var three = new Node(3);
-list.append(three);
-
-var zero = new Node("zero");
-list.prepend(zero);
-
-var minusOne = new Node("minus one");
-list.prepend(minusOne);
-
-var minusTwo = new Node(-2);
-list.prepend(minusTwo);
-
-console.log("Head", list.head());
-console.log("Tail", list.tail());
-console.log("At index", list.at(2));
-console.log("Tail", list.tail());
-console.log(list.contains(3));
-console.log(list.find(3));
-console.log(list.toString());
+export { LinkedList, Node };
