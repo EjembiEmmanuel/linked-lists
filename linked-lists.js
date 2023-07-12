@@ -89,7 +89,6 @@ class LinkedList {
       }
 
       if (index < 0 || index >= size) {
-        4;
         throw new Error("List out of range");
       }
 
