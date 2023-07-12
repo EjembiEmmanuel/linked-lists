@@ -72,10 +72,32 @@ class LinkedList {
   }
 
   insertAt(value, index) {
-    index -= 1;
-    var node = getNode(this.list, 0, index);
-    value.nextNode = node.nextNode;
-    node.nextNode = value;
+    var node;
+    var size = this.size();
+
+    try {
+      if (this.list === null) {
+        throw new Error("Can't insert element in an empty list");
+      }
+
+      if (index < 0 || index >= size) {
+        4;
+        throw new Error("List out of range");
+      }
+
+      if (index === 0) {
+        value.nextNode = this.list;
+        this.list = value;
+        return;
+      }
+
+      index -= 1;
+      node = getNode(this.list, 0, index);
+      value.nextNode = node.nextNode;
+      node.nextNode = value;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   removeAt(index) {

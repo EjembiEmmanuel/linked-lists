@@ -1,8 +1,8 @@
 import { LinkedList, Node } from "./linked-lists.js";
 
 var list = new LinkedList();
-var one = new Node(1);
-list.append(one);
+// var one = new Node(1);
+// list.append(one);
 
 // var two = new Node("two");
 // list.append(two);
@@ -30,7 +30,7 @@ list.append(one);
 // console.log(list.toString());
 
 // var newItem1 = new Node("new item 1");
-// list.insertAt(newItem1, 100);
+// list.insertAt(newItem1, 0);
 
 // console.log(list.toString());
 
@@ -39,5 +39,5 @@ list.append(one);
 
 // console.log(list.toString());
 
-// list.removeAt(-1);
+// list.removeAt(2);
 console.log(list.toString());
