@@ -8,7 +8,7 @@ import {
   buildString,
 } from "./utils.js";
 
-class LinkedList {
+export default class LinkedList {
   constructor() {
     this.list = null;
   }
@@ -132,12 +132,3 @@ class LinkedList {
     }
   }
 }
-
-class Node {
-  constructor(value = null, nextNode = null) {
-    this.value = value;
-    this.nextNode = nextNode;
-  }
-}
-
-export { LinkedList, Node };

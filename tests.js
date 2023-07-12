@@ -1,4 +1,5 @@
-import { LinkedList, Node } from "./linked-lists.js";
+import LinkedList from "./linked-lists.js";
+import Node from "./node.js";
 
 var list = new LinkedList();
 var one = new Node(1);
