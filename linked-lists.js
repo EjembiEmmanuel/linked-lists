@@ -68,7 +68,15 @@ class LinkedList {
   }
 
   toString() {
-    return buildString(this.list, "");
+    try {
+      if (this.list === null) {
+        return null;
+      }
+
+      return buildString(this.list, "");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   insertAt(value, index) {
